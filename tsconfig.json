@@ -7,6 +7,8 @@
         "allowUnreachableCode": false,
         "allowUnusedLabels": false,
         "esModuleInterop": true,
+        "declaration": true,
+        "declarationDir": "types",
         "importsNotUsedAsValues": "error",
         "forceConsistentCasingInFileNames": true,
         "jsx": "react",
