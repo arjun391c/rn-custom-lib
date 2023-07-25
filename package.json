@@ -2,23 +2,27 @@
   "name": "my-lib",
   "version": "1.0.0",
   "license": "MIT",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/index.d.ts",
-  "react-native": "src/index",
-  "source": "src/index",
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm/index.js",
+  "types": "lib/types/index.d.ts",
   "files": [
-    "dist",
+    "lib",
+    "!**/__tests__",
+    "!**/*.stories.*",
+    "!**/__fixtures__",
+    "!**/__mocks__",
     "package.json"
   ],
   "private": "false",
   "scripts": {
     "watch": "rollup -c -w",
+    "prebuild": "rimraf lib",
     "build": "rollup -c",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "prepare": "bob build"
   },
   "devDependencies": {
     "@babel/core": "^7.18.6",
@@ -42,6 +46,7 @@
     "@types/react-test-renderer": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.30.0",
     "@typescript-eslint/parser": "^5.30.0",
+    "add": "^2.0.6",
     "babel-jest": "^28.1.2",
     "babel-loader": "^8.2.5",
     "babel-plugin-react-native-web": "^0.18.2",
@@ -52,14 +57,18 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-native": "^0.69.1",
+    "react-native-builder-bob": "^0.18.3",
     "react-native-web": "^0.18.2",
     "react-test-renderer": "^18.2.0",
     "rollup": "^2.75.7",
+    "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-dts": "^4.2.2",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.33.0",
     "tslib": "^2.4.0",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "yarn": "^1.22.19"
   },
   "peerDependencies": {
     "react": "^18.2.0",
@@ -81,8 +90,22 @@
     "modulePathIgnorePatterns": [
       "<rootDir>/example/",
       "<rootDir>/dist/",
-      "<rootDir>/.storybook/"
+      "<rootDir>/.storybook/",
+      "<rootDir>/lib/"
     ]
   },
-  "dependencies": {}
+  "dependencies": {},
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      "commonjs",
+      "module",
+      "typescript"
+    ]
+  },
+  "eslintIgnore": [
+    "node_modules/",
+    "lib/"
+  ]
 }

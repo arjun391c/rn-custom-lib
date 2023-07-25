@@ -1,14 +1,16 @@
 {
     "compilerOptions": {
-        "baseUrl": "./",
-        "paths": {
-            "my-lib": ["./src/index"]
-        },
+        // "baseUrl": "./",
+        // "paths": {
+        //     "my-lib": ["./src/index"]
+        // },
         "allowUnreachableCode": false,
         "allowUnusedLabels": false,
         "esModuleInterop": true,
         "declaration": true,
-        "declarationDir": "types",
+        "declarationDir": "./lib/types",
+        "outDir": "lib",
+        "rootDir": "src",
         "importsNotUsedAsValues": "error",
         "forceConsistentCasingInFileNames": true,
         "jsx": "react",
@@ -28,7 +30,7 @@
         "target": "esnext"
     },
     "include": [
-        "src/**/*"
+        "src/**/*",
     ],
     "exclude": [
         "node_modules",
